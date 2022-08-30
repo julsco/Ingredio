@@ -1,0 +1,41 @@
+.list__ingredients{
+    grid-area: list;
+    height: auto;
+    min-height: 600px;
+    background-color: rgb(241, 205, 174);
+    display: flex;
+    padding-left: 15px;
+    flex-direction: column;
+}
+
+.title{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.ingredients{
+    display: flex;
+}
+
+
+.chosen__ingredients{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 20px;
+    list-style: none;
+}
+
+.btn__remove{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    float: right;
+    color: grey;
+    margin-left: 10px;
+    font-size: 20px;
+    
+}
+

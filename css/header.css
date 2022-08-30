@@ -1,0 +1,33 @@
+.header{
+    grid-area: header;
+    height: 150px;
+    background-color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo {
+    height: 150px;
+    display: block;
+    margin-left: 15px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    margin-right: 250px;
+    gap: 10px; 
+}
+
+.search__field{
+  width: 500px;
+  height: 50px;
+  margin-right: 20px;
+  font-size: 25px;
+}
+
+.search__btn{
+    height: 50px;
+    width: 100px;
+}
