@@ -7,6 +7,7 @@ const btnGo = document.querySelector(".ingredients__btn");
 const closeModal = document.querySelector(".close__modal");
 const footer = document.querySelector(".footer");
 const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
 
 // API config
 
@@ -91,11 +92,18 @@ searchedResults.addEventListener("click", event => {
         }
         // Click on recipe name to open modal
     }else if (event.target.className === "name__recipe"){
-        returnedRecipes.forEach(rec => {
-            const recipe = generateModal(rec);
-            footer.insertAdjacentHTML("afterend", recipe);            
-        });
-    };
+        const recipeName = event.target.innerText;
+        const recipe = returnedRecipes.find(rec => rec.title === recipeName);
+        let recipeURL;
+        (async ()=>{
+            recipeURL = await sourceURL(recipe.id);
+        })().then(()=>{
+            const modalRecipe = generateModal(recipe, recipeURL);
+            modal.insertAdjacentHTML("afterbegin", modalRecipe);
+            modal.classList.remove("hidden");
+            overlay.classList.remove("hidden");
+        })
+    }
 })
 
 // Remove ingredient from the list
@@ -116,8 +124,8 @@ chosenIngredients.addEventListener("click", event =>{
 const getRecipe = async function(arr){
     const ingredients = arr.join(",+");
     const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}&number=2`);
-    console.log(recipes);
     returnedRecipes = recipes;
+    
     recipes.forEach(recipe => {
         let markup = generateMarkupRecipe(recipe);
         searchedResults.insertAdjacentHTML("afterbegin", markup);
@@ -144,31 +152,41 @@ const generateMarkupRecipe = function(recipe){
     </li>`
 }
 
+//Fetch recipe sourceURL
+
+const sourceURL = async function(id){
+    const data = await getJSON(`${API_URL}/recipes/${id}/information?${KEY}`);
+    return await data.sourceUrl;
+  
+}
+
 //Generate modal markup
 
-const generateModal = function(recipe){
-    /* const usedIngredients = [];
-    recipe.usedIngredients.forEach(ing=>{ing.forEach(ingred=>usedIngredients.push(ingred))});
-    const markupUsedIngredients = usedIngredients.join(", ");
-    console.log(usedIngredients);
+const generateModal = function(recipe, url){
+    const usedIngredients = [];
+    const missedIngredients = [];
+    recipe.usedIngredients.forEach(ing=>usedIngredients.push(ing.name));
+    recipe.missedIngredients.forEach(ing=>missedIngredients.push(ing.name));
 
-    const missingIngredients = [];
-    recipe.missedIngredients.forEach(ing=>{ing.forEach(ingred=>missingIngredients.push(ingred))});
-    console.log(missingIngredients);
+    const strUsedIngredients = usedIngredients.join(", ");
+    const strMissedIngredients = missedIngredients.join(", ");
 
-    const markupMissingIngredients = missingIngredients.join(", "); */
     return `
-        <div class="modal">
             <div class="close__modal">&times;</div>
             <div class="modal__title">${recipe.title}</div>
-            <div class="used__ingredients">Used ingredients:${markupUsedIngredients}</div>
-            <div class="missing__ingredients">Missing ingredients:${markupMissingIngredients}</div>
-        </div>`
+            <div class="used__ingredients"><span class="underline">Used ingredients:</span> ${strUsedIngredients}</div><br>
+            <div class="missing__ingredients"><span class="underline">Missed ingredients:</span> ${strMissedIngredients}</div><br>
+            <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}">${url}</a></div>
+        `
 }
 
 //Close modal
 
-closeModal?.addEventListener("click", function(){
-    modal.remove();
-    returnedRecipes = [];
+modal.addEventListener("click", function(e){
+    e.preventDefault();
+    if (e.target.className === "close__modal"){
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+        modal.innerHTML = "";
+    }
 })

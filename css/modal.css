@@ -1,14 +1,27 @@
-.modal {
+/* .modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 500px;
     background-color: #f3f3f3;
-    padding: 15rem 18rem;
+    padding: 100px 150px;
     box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transition: all 0.5s;
+} */
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f3f3f3;
+  height: 300px;
+  width: 600px;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
 }
 
 .close__modal {
@@ -21,6 +34,32 @@
     border: none;
     background: none;
   }
+
+.modal__title{
+  text-align: center;
+  font-size: 35px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.used__ingredients{
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.missing__ingredients{
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.recipe__url{
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.underline{
+  text-decoration: underline;
+}
 
 .overlay {
   position: fixed;
