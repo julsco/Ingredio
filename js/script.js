@@ -77,6 +77,7 @@ const chosenIngredientsMarkup = function(ing){
 
 let ingredients = []; //Initialize empty string with chosen ingredients
 let returnedRecipes = []; //Initialize empty string with returned recipes
+let recipeName = "";
 
 searchedResults.addEventListener("click", event => {
     
@@ -90,9 +91,10 @@ searchedResults.addEventListener("click", event => {
             chosenIngredients.insertAdjacentHTML("beforeend", ingredient);
             ingredients.push(ingredientName);
         }
+    
         // Click on recipe name to open modal
-    }else if (event.target.className === "name__recipe"){
-        const recipeName = event.target.innerText;
+    }else if (event.target.className === "name__recipe" && recipeName === ""){
+        recipeName = event.target.innerText;
         const recipe = returnedRecipes.find(rec => rec.title === recipeName);
         let recipeURL;
         (async ()=>{
@@ -124,6 +126,9 @@ chosenIngredients.addEventListener("click", event =>{
 const getRecipe = async function(arr){
     const ingredients = arr.join(",+");
     const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}&number=2`);
+    if (recipes.length == 0){
+        searchedResults.textContent = "No recipes found with your ingredients, please try something else :)"
+    }
     returnedRecipes = recipes;
     
     recipes.forEach(recipe => {
@@ -188,5 +193,6 @@ modal.addEventListener("click", function(e){
         modal.classList.add("hidden");
         overlay.classList.add("hidden");
         modal.innerHTML = "";
+        recipeName = ""
     }
 })
