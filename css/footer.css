@@ -1,7 +1,7 @@
 .footer{
     grid-area: footer;
     height: 100px;
-    background-color: black;
+    background-color: rgb(190, 163, 109);
     display: flex;
     align-content: center;
     color: white;

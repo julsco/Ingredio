@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
@@ -13,12 +14,12 @@
             <img src="img/ingredio_logo.png" alt="Logo" class="header__logo"/>
             <form class="search">
                 <input
-                type="text"
+                type="text" required
                 class="search__field"
                 placeholder="Search for ingredients..."
                 />
                 <button class="btn search__btn">
-                    Search
+                    <i class="fa fa-search">     Search</i>
                 </button>
             </form>
         </header>
@@ -45,7 +46,7 @@
 
         <div class="list__ingredients">
             <div class="title">
-                <h2>My list of ingredients</h2>
+                <div class="ingredients__title">My list of ingredients</div>
                 <button class="btn ingredients__btn">
                     GO
                 </button>
@@ -58,14 +59,15 @@
         </div>
 
         <footer class="footer">
-            <h1>Footer</h1>
+            Website created by Julian Scotti for portfolio purposes.
+            The rest of my projects at: <a href="https://github.com/julsco"> https://github.com/julsco</a>
         </footer>
-        <div class="modal hidden">
+        <div class="modal hidden"><!-- style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(img/recipe.jpg);" -->
             <!-- <div class="close__modal">&times;</div>
             <div class="modal__title">Title of my recipe</div>
             <div class="used__ingredients"><span class="underline">Used ingredients:</span> garlic, peppers</div><br>
             <div class="missing__ingredients"><span class="underline">Missed ingredients:</span> onions, parsley</div>
-            <div class="recipe__url"><span class="underline">Source URL:</span> ${url}</div> -->
+            <div class="recipe__url"><span class="underline">Source URL:</span> weqwdqwdqwqhdgqwfdgqwydgqwdqwgdgkqwkgdj</div> -->
         </div>
         <div class="overlay hidden"></div>
     </div>

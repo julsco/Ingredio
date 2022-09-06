@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
 body{
     background-color: #e9d1db;
+    font-family: 'Nunito', sans-serif;
 }
 
 .container {
@@ -8,29 +11,25 @@ body{
       'header header header header'
       'search search search list'
       'footer footer footer footer';
-    grid-template-columns: 300px 300px 300px 300px; 
-    gap: 10px;
+    grid-template-columns: 350px 350px 350px 350px;
     height: auto;
     margin-top: 50px;
     justify-content: center;
-    
 }
 
 
 .btn {
   background-color: #EA4C89;
-  border-radius: 8px;
+  border-radius: 15px;
   border-style: none;
   box-sizing: border-box;
   color: #FFFFFF;
   cursor: pointer;
   /* display: inline-block; */
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
+  font-size: 20px;
+  min-height: 10px;
   line-height: 20px;
   list-style: none;
-  margin: 0;
   outline: none;
   padding: 10px 16px;
   position: relative;
@@ -51,4 +50,14 @@ body{
 .hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    grid-template-areas:
+      'header header header header'
+      'list list list list'
+      'search search search search'
+      'footer footer footer footer';
+  }
 }

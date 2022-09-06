@@ -56,8 +56,10 @@ const getIngredient = async function (){
         let ingredient = generateMarkupIng(ing);
         searchedResults.insertAdjacentHTML("afterbegin", ingredient);
     });
-
+    //Clear search form input:
     document.querySelector(".search__field").value = "";
+    //User input unknown ingredient:
+    if (data.length == 0) searchedResults.innerHTML = `${query} not recognised as an ingredient, please try another one`
 }
 
 // Search for the ingredients
@@ -102,8 +104,8 @@ searchedResults.addEventListener("click", event => {
         })().then(()=>{
             const modalRecipe = generateModal(recipe, recipeURL);
             modal.insertAdjacentHTML("afterbegin", modalRecipe);
-            modal.classList.remove("hidden");
             overlay.classList.remove("hidden");
+            modal.classList.remove("hidden");
         })
     }
 })
@@ -126,6 +128,8 @@ chosenIngredients.addEventListener("click", event =>{
 const getRecipe = async function(arr){
     const ingredients = arr.join(",+");
     const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}&number=2`);
+    
+    //if recipes data lenght is 0 means no recipe found with chosen ingredients by the user
     if (recipes.length == 0){
         searchedResults.textContent = "No recipes found with your ingredients, please try something else :)"
     }
@@ -135,14 +139,14 @@ const getRecipe = async function(arr){
         let markup = generateMarkupRecipe(recipe);
         searchedResults.insertAdjacentHTML("afterbegin", markup);
     });
-    //if data lenght is 0 means no recipe found with chosen ingredients
+    
 }
 
 //Get ingredients with GO button
 
 btnGo.addEventListener("click", async function(){
-    searchedResults.innerHTML = "";
-    getRecipe(ingredients);    
+    searchedResults.innerHTML = ""; // Clear HTML from ingredients searched    
+    ingredients.length == 0 ? searchedResults.innerHTML = "Please add ingredients to search for a recipe": getRecipe(ingredients);
 });        
 
 // Generate HTML for recipe searched
@@ -161,8 +165,7 @@ const generateMarkupRecipe = function(recipe){
 
 const sourceURL = async function(id){
     const data = await getJSON(`${API_URL}/recipes/${id}/information?${KEY}`);
-    return await data.sourceUrl;
-  
+    return await data.sourceUrl;  
 }
 
 //Generate modal markup
@@ -180,16 +183,15 @@ const generateModal = function(recipe, url){
             <div class="close__modal">&times;</div>
             <div class="modal__title">${recipe.title}</div>
             <div class="used__ingredients"><span class="underline">Used ingredients:</span> ${strUsedIngredients}</div><br>
-            <div class="missing__ingredients"><span class="underline">Missed ingredients:</span> ${strMissedIngredients}</div><br>
+            <div class="missing__ingredients"><span class="underline">Missing ingredients:</span> ${strMissedIngredients}</div><br>
             <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}">${url}</a></div>
         `
 }
 
 //Close modal
 
-modal.addEventListener("click", function(e){
-    e.preventDefault();
-    if (e.target.className === "close__modal"){
+document.addEventListener("click", function(e){
+    if (e.target.matches(".close__modal") || !e.target.closest(".modal")){
         modal.classList.add("hidden");
         overlay.classList.add("hidden");
         modal.innerHTML = "";

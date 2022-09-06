@@ -2,32 +2,30 @@
     grid-area: header;
     height: 150px;
     background-color: antiquewhite;
-    display: flex;
+    position: relative;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .header__logo {
     height: 150px;
-    display: block;
+    position: absolute;
+    float: left;
     margin-left: 15px;
 }
 
 .search{
-    display: flex;
-    align-items: center;
-    margin-right: 250px;
-    gap: 10px; 
-}
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+}   
 
 .search__field{
-  width: 500px;
-  height: 50px;
+  width: 400px;
+  height: 45px;
   margin-right: 20px;
-  font-size: 25px;
-}
-
-.search__btn{
-    height: 50px;
-    width: 100px;
+  font-size: 20px;
+  border-radius: 15px;
 }
