@@ -14,11 +14,11 @@ body{
 .container {
     display: grid;
     grid-template-areas:
-      'header header header'
-      'search search list'
-      'footer footer footer';
+      'header header header header'
+      'search search search list'
+      'footer footer footer footer';
     /* grid-template-columns: 350px 350px 350px 350px; */
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 70%;
     height: auto;
 }
