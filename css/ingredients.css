@@ -5,7 +5,9 @@
     background-color: rgb(241, 205, 174);
     display: flex;
     padding-left: 15px;
+    padding-right: 15px;
     flex-direction: column;
+    
 }
 
 .title{
@@ -15,7 +17,8 @@
 }
 
 .ingredients__btn{
-    display: flex;
+    height: 40px;
+    align-self: center;
 }
 
 .ingredients__title{
@@ -51,7 +54,8 @@
 
 @media screen and (max-width: 700px) {
     .list__ingredients{
-        min-height: 300px;
+        min-height: 150px;
+        overflow-y: auto;
     }
   }
 

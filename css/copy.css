@@ -2,23 +2,24 @@
     grid-area: header;
     height: 150px;
     background-color: antiquewhite;
-    display: flex;
-    justify-content: flex-start;
+    position: relative;
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
 }
 
 .header__logo {
     height: 150px;
-}
-
-.empty{
-    width: 200px;
+    position: absolute;
+    float: left;
+    margin-left: 15px;
 }
 
 .search{
-    align-self: center;
-    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
 }   
 
 .search__field{
@@ -30,29 +31,15 @@
 }
 
 @media screen and (max-width: 700px) {
-
-    /* .header{
-        height: 200px;
-    } */
-
     .header__logo {
         display: none;
     }
 
-    .empty{
-        display: none;
-    }
-
-    /* .search{
-        width: 100%;
-        align-self: center;
-    } */
-
     .search{
-        margin: auto;
+        width: 100%;
     }
 
     .search__field{
-        width: fit-content;
+        width: 250px;
     }
   }

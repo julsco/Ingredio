@@ -14,13 +14,17 @@ body{
 .container {
     display: grid;
     grid-template-areas:
-      'header header header header'
-      'search search search list'
-      'footer footer footer footer';
+      'header header'
+      'search list'
+      'footer footer';
     /* grid-template-columns: 350px 350px 350px 350px; */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 0.25fr;
+    /* grid-template-rows: 1fr 4fr 0.8fr; */
     width: 70%;
+    margin: auto;
+    margin-top: 50px;
     height: auto;
+    
 }
 
 
@@ -60,11 +64,14 @@ body{
 
 @media screen and (max-width: 700px) {
   .container {
-    grid-template-columns: 1fr;
+    display: grid;
     grid-template-areas:
       'header'
-      'list'
       'search'
+      'list'
       'footer';
+    grid-template-columns: 1fr;
+    /* margin-top: 0; */
+    height: auto;
   }
 }

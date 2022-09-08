@@ -1,9 +1,10 @@
 .search__results{
     grid-area: search;
     height: auto;
-    min-height: 600px;
+    min-height: 500px;
     background-color: bisque;
     display: flex;
+    
 }
 
 .searched__results{
@@ -22,6 +23,12 @@
     align-items: center;
     background-color: #fff;
     overflow: hidden;
+    pointer-events: none;
+    transition: all .2s ease-in-out;
+}
+
+.preview:hover {
+    transform: scale(1.1);
 }
 
 .preview__img{
@@ -31,9 +38,12 @@
 }
 
 .preview__name{
+    pointer-events: auto;
     font-size: 25px;
     cursor: pointer;
     margin-top: 25px;
+    text-align: center;
+    
 }
 
 /*------------------------------ Recipe */
@@ -47,6 +57,12 @@
     align-items: center;
     background-color: #fff;
     overflow: hidden;
+    pointer-events: none;
+    transition: all .2s ease-in-out;
+}
+
+.preview__recipes:hover {
+    transform: scale(1.1);
 }
 
 .image__recipe{
@@ -57,10 +73,30 @@
 }
 
 .name__recipe{
+    pointer-events: auto;
     display: flex;
     font-size: 25px;
     cursor: pointer;
     justify-content: center;
     align-items: center;
     margin-top: 8px;
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    .search__results{
+        min-height: 300px;
+        overflow-y: auto;
+    }
+
+    .preview{
+        width: 150px;
+        height: 150px;
+    }
+
+    .searched__results{
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }

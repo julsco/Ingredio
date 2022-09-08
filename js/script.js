@@ -184,7 +184,7 @@ const generateModal = function(recipe, url){
             <div class="modal__title">${recipe.title}</div>
             <div class="used__ingredients"><span class="underline">Used ingredients:</span> ${strUsedIngredients}</div><br>
             <div class="missing__ingredients"><span class="underline">Missing ingredients:</span> ${strMissedIngredients}</div><br>
-            <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}">${url}</a></div>
+            <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}">Get me to the recipe!</a></div>
         `
 }
 
