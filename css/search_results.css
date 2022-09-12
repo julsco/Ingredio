@@ -12,6 +12,9 @@
    flex-wrap: wrap;
    gap: 15px;
    font-size: 25px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   justify-content: center;
 }
 
 .preview{
@@ -83,7 +86,7 @@
     text-align: center;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     .search__results{
         min-height: 300px;
         overflow-y: auto;

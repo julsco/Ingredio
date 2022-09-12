@@ -14,6 +14,7 @@
     display: flex;
     margin-top: 10px;
     gap: 15px;
+    height: 20%;
 }
 
 .ingredients__btn{
@@ -29,6 +30,8 @@
 
 .ingredients{
     display: flex;
+    height: 60%;
+    overflow-y: auto;
 }
 
 
@@ -52,7 +55,12 @@
     height: 50px;
 }
 
-@media screen and (max-width: 700px) {
+.recipe__filter{
+    margin-top: 20px;
+    height: 20%;
+}
+
+@media screen and (max-width: 900px) {
     .list__ingredients{
         min-height: 150px;
         overflow-y: auto;

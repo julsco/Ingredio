@@ -62,7 +62,7 @@ body{
   opacity: 0;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .container {
     display: grid;
     grid-template-areas:

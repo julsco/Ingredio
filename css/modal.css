@@ -69,6 +69,8 @@
 
 .recipe__url a {
   position: relative;
+  color: black;
+  text-decoration: none;
 }
 
 .recipe__url a::before {
@@ -90,7 +92,7 @@
   transform: scaleX(1);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .modal{
     min-height: 0;
     min-width: 0;

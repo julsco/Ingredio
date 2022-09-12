@@ -8,6 +8,7 @@ const closeModal = document.querySelector(".close__modal");
 const footer = document.querySelector(".footer");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
+const filterCheckbox = document.getElementById("ingredients__check");
 
 // API config
 
@@ -127,12 +128,19 @@ chosenIngredients.addEventListener("click", event =>{
 
 const getRecipe = async function(arr){
     const ingredients = arr.join(",+");
-    const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}&number=2`);
+    const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}`);
     
+    if (filterCheckbox.checked){
+        /* recipes.filter(recipe=>recipe.usedIngredientCount === arr.length) */
+        console.log("checked");
+    }
+
     //if recipes data lenght is 0 means no recipe found with chosen ingredients by the user
     if (recipes.length == 0){
         searchedResults.textContent = "No recipes found with your ingredients, please try something else :)"
     }
+    
+    
     returnedRecipes = recipes;
     
     recipes.forEach(recipe => {
@@ -184,7 +192,7 @@ const generateModal = function(recipe, url){
             <div class="modal__title">${recipe.title}</div>
             <div class="used__ingredients"><span class="underline">Used ingredients:</span> ${strUsedIngredients}</div><br>
             <div class="missing__ingredients"><span class="underline">Missing ingredients:</span> ${strMissedIngredients}</div><br>
-            <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}">Get me to the recipe!</a></div>
+            <div class="recipe__url"><span class="underline">Source URL:</span> <a href="${url}" target=“_blank”>Get me to the recipe!</a></div>
         `
 }
 
