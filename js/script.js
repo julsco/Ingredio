@@ -8,7 +8,7 @@ const closeModal = document.querySelector(".close__modal");
 const footer = document.querySelector(".footer");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
-const filterCheckbox = document.getElementById("ingredients__check");
+const filterCheckbox = document.querySelector("#ingredients__check");
 
 // API config
 
@@ -103,10 +103,12 @@ searchedResults.addEventListener("click", event => {
         (async ()=>{
             recipeURL = await sourceURL(recipe.id);
         })().then(()=>{
-            const modalRecipe = generateModal(recipe, recipeURL);
-            modal.insertAdjacentHTML("afterbegin", modalRecipe);
-            overlay.classList.remove("hidden");
-            modal.classList.remove("hidden");
+            if (!modal.hasChildNodes()){
+                const modalRecipe = generateModal(recipe, recipeURL);
+                modal.insertAdjacentHTML("afterbegin", modalRecipe);
+                overlay.classList.remove("hidden");
+                modal.classList.remove("hidden");
+            }
         })
     }
 })
@@ -128,11 +130,11 @@ chosenIngredients.addEventListener("click", event =>{
 
 const getRecipe = async function(arr){
     const ingredients = arr.join(",+");
-    const recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}`);
+    let recipes = await getJSON(`${API_URL}/recipes/findByIngredients?${KEY}&ingredients=${ingredients}`);
     
     if (filterCheckbox.checked){
-        /* recipes.filter(recipe=>recipe.usedIngredientCount === arr.length) */
-        console.log("checked");
+        recipes = recipes.filter(recipe=>recipe.usedIngredientCount === arr.length)
+        console.log(recipes);
     }
 
     //if recipes data lenght is 0 means no recipe found with chosen ingredients by the user
