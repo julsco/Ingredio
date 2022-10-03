@@ -63,6 +63,11 @@ body{
 }
 
 @media screen and (max-width: 900px) {
+  *{
+    margin-top: 0;
+    padding: 0;
+  }
+  
   .container {
     display: grid;
     grid-template-areas:
@@ -73,5 +78,8 @@ body{
     grid-template-columns: 1fr;
     /* margin-top: 0; */
     height: auto;
+    width: 100%;
+    margin: 0;
+    
   }
 }
